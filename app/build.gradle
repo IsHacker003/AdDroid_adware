@@ -1,0 +1,45 @@
+apply plugin: 'com.android.application'
+
+apply plugin: "kotlin-android"
+
+android {
+    namespace 'com.addroid.adware'
+    compileSdkVersion 36
+    defaultConfig {
+        applicationId "com.addroid.adware"
+        minSdkVersion 23
+        //noinspection ExpiredTargetSdkVersion
+        targetSdkVersion 36
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled = true
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+    buildFeatures {
+        viewBinding = true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.7.1'
+    implementation 'com.google.android.gms:play-services-ads:24.5.0'
+    implementation 'com.google.android.ump:user-messaging-platform:3.2.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
