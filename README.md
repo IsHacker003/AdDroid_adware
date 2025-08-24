@@ -8,7 +8,8 @@ On Android 10+, you will need to enable "Display over other apps" permission for
 2. Undetectable in launcher and hard to find in apps list, as it has no name and logo
 3. The app itself is open source (except for Google Admob SDK which is proprietary)
 4. Ads are either displayed as full screen interstitials or sent through notifications
-5. Very small app size (~3MB)
+5. Very small APK size (~3MB)
+6. The adware gets activated only after the user reboots after installing the app
 
 ## Development status
 Currently in early development stage. WIP.
