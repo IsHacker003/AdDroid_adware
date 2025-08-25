@@ -38,12 +38,7 @@
     <receiver android:name=".ShowAds"
         android:exported="true">
       <intent-filter>
-        <action android:name="android.intent.action.BATTERY_LOW" />
-        <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
-        <action android:name="android.intent.action.PACKAGE_FULLY_REMOVED" />
-        <action android:name="android.intent.action.SCREEN_ON" />
         <action android:name="android.intent.action.BOOT_COMPLETED" />
-        <action android:name="android.intent.action.USER_PRESENT" />
       </intent-filter>
     </receiver>
     <service android:name=".AdsService"

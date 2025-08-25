@@ -10,7 +10,6 @@ import android.util.Log
 import android.webkit.WebView
 import com.google.android.gms.ads.MobileAds
 
-
 class AdsService : Service() {
     override fun onBind(p0: Intent?): IBinder? {
         return null
@@ -21,6 +20,7 @@ class AdsService : Service() {
         intentFilter.addAction(Intent.ACTION_PACKAGE_REMOVED)
         intentFilter.addAction(Intent.ACTION_USER_PRESENT)
         intentFilter.addAction(Intent.ACTION_PACKAGE_REPLACED)
+        intentFilter.addAction(Intent.ACTION_SCREEN_ON)
         intentFilter.addDataScheme("package")
         val rec = ShowAds()
         registerReceiver(rec, intentFilter)

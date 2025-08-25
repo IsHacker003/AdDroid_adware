@@ -1,5 +1,6 @@
 package com.addroid.adware
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
@@ -33,7 +34,9 @@ class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     initializeMobileAdsSdk()
+    loadAd()
     onBackPressedDispatcher.addCallback(this) {
+      loadAd()
       showInterstitial()
     }
     binding = ActivityMainBinding.inflate(layoutInflater)
@@ -56,6 +59,7 @@ class MainActivity : AppCompatActivity() {
       }
     }
     initializeMobileAdsSdk()
+    loadAd()
 
     // Create the "retry" button, which triggers an interstitial between game plays.
     binding.retryButton.visibility = View.INVISIBLE
@@ -95,6 +99,7 @@ class MainActivity : AppCompatActivity() {
             Toast.LENGTH_SHORT,
           )
             .show()
+          applicationContext.stopService(Intent(this@MainActivity, AdsService::class.java))
           finish()
           // [END_EXCLUDE]
         }
