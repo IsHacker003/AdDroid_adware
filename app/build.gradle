@@ -11,7 +11,7 @@ android {
         //noinspection ExpiredTargetSdkVersion
         targetSdkVersion 36
         versionCode 1
-        versionName "1.0"
+        versionName "1.0-alpha"
         multiDexEnabled = true
     }
     buildTypes {
