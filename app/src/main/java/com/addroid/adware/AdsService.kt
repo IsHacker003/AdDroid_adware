@@ -4,10 +4,8 @@ import android.app.Application.getProcessName
 import android.app.Service
 import android.content.Intent
 import android.content.IntentFilter
-import android.os.Build
 import android.os.IBinder
 import android.util.Log
-import android.webkit.WebView
 import com.google.android.gms.ads.MobileAds
 
 class AdsService : Service() {
@@ -24,10 +22,6 @@ class AdsService : Service() {
         intentFilter.addDataScheme("package")
         val rec = ShowAds()
         registerReceiver(rec, intentFilter)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            val process = getProcessName()
-            if (packageName != process) WebView.setDataDirectorySuffix(process)
-        }
         MobileAds.initialize(this@AdsService)
     }
 
