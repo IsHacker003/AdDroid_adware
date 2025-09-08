@@ -1,6 +1,5 @@
 package com.addroid.adware
 
-import android.app.Application.getProcessName
 import android.app.Service
 import android.content.Intent
 import android.content.IntentFilter
