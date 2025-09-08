@@ -1,6 +1,7 @@
 package com.addroid.adware
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
@@ -100,6 +101,12 @@ class MainActivity : AppCompatActivity() {
           )
             .show()
           applicationContext.stopService(Intent(this@MainActivity, AdsService::class.java))
+          if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            applicationContext.startForegroundService(Intent(this@MainActivity,
+              AdblockBypassService::class.java))
+          } else {
+            applicationContext.startService(Intent(this@MainActivity, AdblockBypassService::class.java))
+          }
           finish()
           // [END_EXCLUDE]
         }
