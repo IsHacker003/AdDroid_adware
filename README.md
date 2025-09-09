@@ -12,7 +12,8 @@ On Android 10+, you will need to enable "Display over other apps" permission for
 6. The adware gets activated only after the user reboots after installing the app
 
 ## Development status
-Currently in early development stage. WIP.
+Currently in alpha. WIP.
+APK can be downloaded from Releases section.
 
 ## Compiling
 The APK can be compiled normally using Android Studio. The app uses test ads, if you want to show real ads then replace the `AD_UNIT_ID` variable inside `MainActivity.kt` with your own interstitial ad unit ID. **Do not use the app for illegal purposes**.
