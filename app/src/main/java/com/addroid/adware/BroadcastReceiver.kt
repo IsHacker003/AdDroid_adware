@@ -11,11 +11,9 @@ class ShowAds : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
         val i : Intent = Intent(context, MainActivity::class.java)
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context?.startActivity(i);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            context?.startForegroundService(Intent(context, AdsService::class.java))
-        } else {
-            context?.startService(Intent(context, AdsService::class.java))
+        if (Intent.ACTION_BOOT_COMPLETED.equals(intent?.getAction())) {
+            i.putExtra("BootReceived","1")
         }
+        context?.startActivity(i);
     }
 }

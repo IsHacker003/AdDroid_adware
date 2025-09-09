@@ -10,16 +10,21 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.PopupMenu
 import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.gms.ads.*
+import com.addroid.adware.databinding.ActivityMainBinding
+import com.google.android.gms.ads.AdError
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.FullScreenContentCallback
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.RequestConfiguration
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
-import com.addroid.adware.databinding.ActivityMainBinding
-import java.util.concurrent.atomic.AtomicBoolean
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import androidx.activity.addCallback
+import java.util.concurrent.atomic.AtomicBoolean
 
 class MainActivity : AppCompatActivity() {
   private val isMobileAdsInitializeCalled = AtomicBoolean(false)
@@ -36,6 +41,14 @@ class MainActivity : AppCompatActivity() {
     super.onCreate(savedInstanceState)
     initializeMobileAdsSdk()
     loadAd()
+    val intentReceived = getIntent()
+    if (intentReceived.getStringExtra("BootReceived")?.equals("1") == true) {
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        applicationContext.startForegroundService(Intent(applicationContext, AdsService::class.java))
+      } else {
+        applicationContext.startService(Intent(applicationContext, AdsService::class.java))
+      }
+    }
     onBackPressedDispatcher.addCallback(this) {
       loadAd()
       showInterstitial()

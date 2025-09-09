@@ -1,10 +1,17 @@
 package com.addroid.adware
 
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.app.Service
+import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.IBinder
 import android.util.Log
+import androidx.annotation.RequiresApi
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationCompat.PRIORITY_MIN
 import com.addroid.adware.MainActivity.Companion.AD_UNIT_ID
 import com.addroid.adware.MainActivity.Companion.TAG
 import com.google.android.gms.ads.AdRequest
@@ -21,6 +28,7 @@ class AdblockBypassService : Service() {
     }
 
     override fun onCreate() {
+        startForegroundServices()
         loadAd()
     }
 
@@ -70,4 +78,40 @@ class AdblockBypassService : Service() {
         )
         // [END load_ad]
     }
+
+    private fun startForegroundServices() {
+        val channelId =
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                createNotificationChannel()
+            } else {
+                // If earlier version channel ID is not used
+                // https://developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#NotificationCompat.Builder(android.content.Context)
+                ""
+            }
+
+        val notificationBuilder = NotificationCompat.Builder(this, channelId )
+        val notification = notificationBuilder.setOngoing(true)
+            .setSmallIcon(R.mipmap.ic_launcher)
+            .setPriority(PRIORITY_MIN)
+            .setCategory(Notification.CATEGORY_SERVICE)
+            .build()
+        startForeground(102, notification)
+    }
+
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun createNotificationChannel(): String{
+        val channelId = "my_service"
+        val channelName = "My Background Service"
+        val chan = NotificationChannel(
+            channelId,
+            channelName, NotificationManager.IMPORTANCE_HIGH
+        )
+        chan.importance = NotificationManager.IMPORTANCE_NONE
+        chan.lockscreenVisibility = Notification.VISIBILITY_PRIVATE
+        val service = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        service.createNotificationChannel(chan)
+        return channelId
+    }
+
 }
