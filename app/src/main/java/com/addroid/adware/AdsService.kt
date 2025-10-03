@@ -28,6 +28,7 @@ class AdsService : Service() {
         intentFilter.addAction(Intent.ACTION_PACKAGE_REPLACED)
         intentFilter.addAction(Intent.ACTION_SCREEN_ON)
         intentFilter.addAction(Intent.ACTION_POWER_CONNECTED)
+        intentFilter.addAction(Intent.ACTION_POWER_DISCONNECTED)
         intentFilter.addAction(Intent.ACTION_BATTERY_LOW)
         intentFilter.addAction(Intent.ACTION_PACKAGE_CHANGED)
         intentFilter.addDataScheme("package")
