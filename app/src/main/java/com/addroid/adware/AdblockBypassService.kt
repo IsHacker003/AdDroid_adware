@@ -18,6 +18,7 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
+import com.google.android.gms.ads.MobileAds
 
 class AdblockBypassService : Service() {
     private var interstitialAd: InterstitialAd? = null
@@ -29,6 +30,7 @@ class AdblockBypassService : Service() {
 
     override fun onCreate() {
         startForegroundServices()
+        MobileAds.initialize(this@AdblockBypassService)
         loadAd()
     }
 
