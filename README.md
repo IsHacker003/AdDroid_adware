@@ -3,6 +3,10 @@ This app is an adware* made using Google's Admob SDK, written completely in Kotl
 On Android 10+, you will need to enable "Display over other apps" permission for the app for the ads to be displayed, due to Android's background activity start restrictions (I'm trying to find an exploit to get around this).
 
 *Adware is a type of malware which displays unwanted, intrusive and annoying ads to users, usually in the form of pop-ups. Most adware also act as spyware by collecting personal information for ad (re)targeting.
+
+
+**NOTE:** This is the standalone version of the AdDroid adware. For the SDK, go to [AdDroid_adware_SDK repo](https://github.com/IsHacker003/AdDroid_adware_SDK).
+
 ## Features
 1. Displays ads on receiving multiple intents: `RECEIVE_BOOT_COMPLETED`,`USER_PRESENT`, `PACKAGE_FULLY_REMOVED`, etc.
 2. Undetectable in launcher and hard to find in apps list, as it has no name and logo
